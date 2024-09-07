@@ -1,0 +1,79 @@
+
+
+PAGES 
+
+1. Home 
+2. Signup 
+3. Login 
+4. User 
+5. Create Meme
+6. Meme
+7. Update Meme
+
+----------------------
+
+COMPONENTS
+
+Header 
+MemeList
+Meme
+
+
+//request
+const getAllProjects = () => {
+  // Get the token from the localStorage
+  const storedToken = localStorage.getItem("authToken");
+ 
+  // Send the token through the request "Authorization" Headers
+  axios
+    .get(
+    `${API_URL}/api/projects`,
+    { headers: { Authorization: `Bearer ${storedToken}` } }
+  )
+    .then((response) => setProjects(response.data))
+    .catch((error) => console.log(error));
+};
+
+
+//request
+const getProject = () => {
+  // Get the token from the localStorage
+  const storedToken = localStorage.getItem("authToken");
+ 
+  // Send the token through the request "Authorization" Headers
+  axios
+    .get(
+      `${API_URL}/api/projects/${projectId}`,
+      { headers: { Authorization: `Bearer ${storedToken}` } }
+    )
+    .then((response) => {
+      const oneProject = response.data;
+      setProject(oneProject);
+    })
+    .catch((error) => console.log(error));
+};
+
+
+//request
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const requestBody = { title, description };
+ 
+  // Get the token from the localStorage
+  const storedToken = localStorage.getItem('authToken');
+ 
+  // Send the token through the request "Authorization" Headers
+  axios
+    .post(
+    `${API_URL}/api/projects`,
+    requestBody,
+    { headers: { Authorization: `Bearer ${storedToken}` } }
+  )
+    .then((response) => {
+    // Reset the state
+    setTitle("");
+    setDescription("");
+    props.refreshProjects();
+  })
+    .catch((error) => console.log(error));
+};
