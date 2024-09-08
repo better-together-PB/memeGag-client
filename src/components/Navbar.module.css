@@ -1,0 +1,74 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 2px solid #f1f1f1;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.logo:link,
+.logo:visited {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+
+.logo:active,
+.logo:hover {
+  color: #555;
+}
+
+.logo h1 {
+  font-size: 42px;
+  padding: 10px 20px;
+}
+
+.subNav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.subNav a:link,
+.subNav a:visited {
+  font-size: 22px;
+  text-decoration: none;
+  color: #fff;
+
+  background-color: #0077ff;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.subNav a:active,
+.subNav a:hover {
+  background-color: #006be6;
+}
+
+.subNav .profilePicture:link,
+.subNav .profilePicture:visited {
+  padding: 5px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #ddd;
+}
+
+.subNav .profilePicture:hover,
+.subNav .profilePicture:active {
+  background-color: #ccc;
+}
+
+.profilePicture img {
+  width: 40px;
+}
+
+.nav * {
+  transition: all 0.3s;
+}

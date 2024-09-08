@@ -1,5 +1,11 @@
+import MemeList from "../components/MemeList";
+
 function MainFeed() {
-  return <h2>MAIN FEED</h2>;
+  return (
+    <>
+      <MemeList />
+    </>
+  );
 }
 
 export default MainFeed;
