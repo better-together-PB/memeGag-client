@@ -1,3 +1,20 @@
+for the backend create central error handling
+
+GIVE MAX LENGHT FOR THE TITLE
+Style the Signup, Login and CreatePost pages
+Make changes on the header and make it fixed/sticky
+Make a sidebar with all catecories, top comments and likes and home
+Make the wabsite responsive
+
+Implement comments for the posts
+  -component for creating comments 
+  -component for fetching and displaying a list of comments
+  -component that will be the comments
+
+Implement linking and disliking comments
+Implement deleting comments
+
+
 
 
 PAGES 

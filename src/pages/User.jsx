@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import UserDetails from "../components/UserDetails";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import MemeList from "../components/MemeList";
 
 const API_URL = "http://localhost:5005";
 
 function User() {
   const [username, setUsername] = useState("");
   const [userImage, setUserImage] = useState("");
-  const [userPosts, setUserPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   let { userId, content } = useParams();
   const navigate = useNavigate();
@@ -32,18 +33,61 @@ function User() {
         const { posts, profileImage, username } = res.data.data;
         setUsername(username);
         setUserImage(profileImage);
-        setUserPosts(posts);
+        setPosts(posts);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [content]);
 
-  console.log(userPosts);
+  function handleLikeBtnClick(id, liked) {
+    setPosts((prevPosts) =>
+      prevPosts.map((post) => {
+        if (post._id === id) {
+          if (liked) {
+            return {
+              ...post,
+              likes: post.likes - 1,
+              isLikedByUser: !post.isLikedByUser,
+            };
+          } else {
+            return {
+              ...post,
+              likes: post.likes + 1,
+              isLikedByUser: !post.isLikedByUser,
+            };
+          }
+        } else {
+          return post;
+        }
+      })
+    );
+  }
+
+  function handleDeletePost(id) {
+    setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id));
+  }
 
   return (
-    <div>
-      <UserDetails username={username} userImage={userImage} userId={userId} />
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <UserDetails
+        username={username}
+        userImage={userImage}
+        userId={userId}
+        content={content}
+      />
+      <MemeList
+        posts={posts}
+        onDeletePos={handleDeletePost}
+        onLikeBtnClick={handleLikeBtnClick}
+      />
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import styles from "./Meme.module.css";
 
 import { AuthContext } from "../context/auth.context";
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const tags = {
   humor:
@@ -69,6 +70,23 @@ const Comment = (
   </svg>
 );
 
+const EditIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="size-6"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+    />
+  </svg>
+);
+
 function calcDays(dateString) {
   // Parse the input date
   const pastDate = new Date(dateString);
@@ -89,6 +107,23 @@ const API_URL = "http://localhost:5005";
 
 function Meme({ post, onDeletePost, onLikeBtnClick }) {
   const { user } = useContext(AuthContext);
+  const [title, setTitle] = useState(post.title);
+  const [newTitle, setNewTitle] = useState(post.title);
+  const [isEditing, setIsEditing] = useState(false);
+  const textareaRef = useRef();
+  const navigate = useNavigate();
+
+  console.log(post);
+
+  useEffect(() => {
+    if (isEditing) {
+      textareaRef.current.focus();
+      textareaRef.current.setSelectionRange(
+        textareaRef.current.value.length,
+        textareaRef.current.value.length
+      );
+    }
+  }, [isEditing]);
 
   const postCreatedByUser = user?._id === post.userId;
 
@@ -132,6 +167,50 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
       });
   }
 
+  function handleEditIconClick() {
+    const storedToken = localStorage.getItem("authToken");
+
+    if (isEditing) {
+      axios
+        .patch(
+          `${API_URL}/api/post/${post._id}`,
+          { title: newTitle },
+          {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          }
+        )
+        .then(() => {
+          setTitle(newTitle);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Changing the title failed");
+        });
+    }
+
+    setIsEditing((e) => !e);
+  }
+
+  function handleOpenPost(postId) {
+    window.open(`/post/${postId}`, "_black", "noopener,noreferrer");
+  }
+
+  const editTextArea = (
+    <form
+      onSubmit={() => {
+        console.log("FORM SUBMITTED");
+      }}
+    >
+      <textarea
+        maxLength={185}
+        value={newTitle}
+        onChange={(e) => setNewTitle(e.target.value)}
+        ref={textareaRef}
+        className={styles.editTextArea}
+      />
+    </form>
+  );
+
   return (
     <div className={styles.meme}>
       <div className={styles.memeInfo}>
@@ -142,17 +221,34 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
           {daysAgo === "new" || "d"}
         </span>
         {postCreatedByUser && (
-          <button
-            className={styles.deleteBtn}
-            onClick={() => handleDeletePost(post._id)}
-          >
-            {DeleteIcon}
-          </button>
+          <div className={styles.ownerIconContainer}>
+            <button
+              className={`${styles.ownerIcon} ${styles.edit} ${
+                isEditing ? styles.editing : ""
+              }`}
+              onClick={handleEditIconClick}
+            >
+              {EditIcon}
+            </button>
+            <button
+              className={styles.ownerIcon}
+              onClick={() => handleDeletePost(post._id)}
+            >
+              {DeleteIcon}
+            </button>
+          </div>
         )}
       </div>
-      <h4>{post.title}</h4>
+      <h4 onClick={() => handleOpenPost(post._id)}>
+        {isEditing ? editTextArea : title}
+      </h4>
       <div className={styles.imageContainer}>
-        <img src={post.image} alt={post.title} className={styles.memeImg} />
+        <img
+          onClick={() => handleOpenPost(post._id)}
+          src={post.image}
+          alt={post.title}
+          className={styles.memeImg}
+        />
       </div>
       <div className={styles.interactions}>
         <button
@@ -162,7 +258,7 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
           {Heart}
           <span>{post.likes}</span>
         </button>
-        <div>
+        <div onClick={() => handleOpenPost(post._id)}>
           <button className={styles.comment}>
             {Comment}
             <span>{post.comments}</span>

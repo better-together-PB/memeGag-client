@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-bottom: 20px;
 }
 
 .details img {
@@ -13,4 +14,27 @@
 
 .details h2 {
   font-size: 28px;
+}
+
+.menu {
+  display: flex;
+  width: 40%;
+  box-shadow: inset 0 -4px 0 0 #989898;
+  margin-bottom: 20px;
+}
+
+.menu a:link,
+.menu a:visited {
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px 20px;
+  color: #989898;
+}
+
+.menu :global(.active:link),
+.menu :global(.active:visited) {
+  border-bottom: 4px solid #333;
+  color: inherit;
 }

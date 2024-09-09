@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import CreatePost from "./pages/CreatePost";
 
 import styles from "./App.module.css";
+import MemePage from "./pages/MemePage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainFeed />} />
           <Route path="/user/:userId/:content?" element={<User />} />
+          <Route path="/post/:postId" element={<MemePage />} />
           <Route
             path="/signup"
             element={
