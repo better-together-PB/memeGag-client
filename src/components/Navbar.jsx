@@ -15,7 +15,7 @@ function Navbar() {
       <div className={styles.subNav}>
         {isLoggedIn && (
           <>
-            <Link to={`/profile`} className={styles.profilePicture}>
+            <Link to={`/user/${user._id}`} className={styles.profilePicture}>
               {user && <img src={user.image} alt="Profile picture" />}
             </Link>
             <Link to="/createPost">Post</Link>

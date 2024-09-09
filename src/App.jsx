@@ -4,6 +4,7 @@ import Signup from "./pages/Signup";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 import MainFeed from "./pages/MainFeed";
+import User from "./pages/User";
 import Header from "./components/Header";
 import CreatePost from "./pages/CreatePost";
 
@@ -17,6 +18,7 @@ function App() {
       <main className={styles.main}>
         <Routes>
           <Route path="/" element={<MainFeed />} />
+          <Route path="/user/:userId/:content?" element={<User />} />
           <Route
             path="/signup"
             element={

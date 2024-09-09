@@ -1,0 +1,16 @@
+.details {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.details img {
+  width: 100px;
+  border-radius: 50%;
+  background-color: #ddd;
+  padding: 10px;
+}
+
+.details h2 {
+  font-size: 28px;
+}

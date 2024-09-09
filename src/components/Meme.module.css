@@ -49,12 +49,15 @@
 }
 
 .imageContainer {
-  width: 100%;
+  background-color: #e5e5e5;
+  padding: 0 20px;
+  border-radius: 3px;
+  margin-bottom: 5px;
 }
 
 .memeImg {
   width: 100%;
-  margin-bottom: 5px;
+  display: block;
 }
 
 .interactions {
@@ -107,4 +110,9 @@
 
 .comment:hover .iconInteract {
   color: blue;
+}
+
+.liked .iconInteract {
+  color: red;
+  fill: red;
 }

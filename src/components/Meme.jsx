@@ -2,6 +2,7 @@ import styles from "./Meme.module.css";
 
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
+import axios from "axios";
 
 const tags = {
   humor:
@@ -84,14 +85,53 @@ function calcDays(dateString) {
   return daysDifference;
 }
 
-function Meme({ post }) {
+const API_URL = "http://localhost:5005";
+
+function Meme({ post, onDeletePost, onLikeBtnClick }) {
   const { user } = useContext(AuthContext);
 
   const postCreatedByUser = user?._id === post.userId;
 
   const daysAgo = calcDays(post.createdAt) || "new";
 
-  console.log(post);
+  function handleDeletePost(id) {
+    const storedToken = localStorage.getItem("authToken");
+
+    const deletePost = confirm("Are you sure you want to delete this post?");
+
+    if (deletePost) {
+      axios
+        .delete(`${API_URL}/api/post/${id}`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then(() => {
+          onDeletePost(id);
+          alert("Post successfully deleted!");
+        })
+        .catch((error) => {
+          alert("Something went wrong! Post was not deleted.");
+        });
+    }
+  }
+
+  function handleLikePost(id) {
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .post(
+        `${API_URL}/api/post/${id}/like`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        }
+      )
+      .then(() => {
+        onLikeBtnClick(id, post.isLikedByUser);
+      })
+      .catch((error) => {
+        alert("An error occured");
+      });
+  }
+
   return (
     <div className={styles.meme}>
       <div className={styles.memeInfo}>
@@ -102,7 +142,12 @@ function Meme({ post }) {
           {daysAgo === "new" || "d"}
         </span>
         {postCreatedByUser && (
-          <button className={styles.deleteBtn}>{DeleteIcon}</button>
+          <button
+            className={styles.deleteBtn}
+            onClick={() => handleDeletePost(post._id)}
+          >
+            {DeleteIcon}
+          </button>
         )}
       </div>
       <h4>{post.title}</h4>
@@ -110,7 +155,10 @@ function Meme({ post }) {
         <img src={post.image} alt={post.title} className={styles.memeImg} />
       </div>
       <div className={styles.interactions}>
-        <button className={styles.like}>
+        <button
+          className={`${styles.like} ${post.isLikedByUser ? styles.liked : ""}`}
+          onClick={() => handleLikePost(post._id)}
+        >
           {Heart}
           <span>{post.likes}</span>
         </button>
