@@ -1,0 +1,33 @@
+.title {
+    font-size: 24px;
+}
+
+.container {
+    width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+    width: 100%;
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.buttonSubmit {
+    display: block;
+    width: 10%;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: blue;
+    border: 1px solid rgb(2, 2, 105);
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+}

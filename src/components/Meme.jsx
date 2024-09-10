@@ -111,7 +111,7 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/api/user/profile/${post.userId}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/user/details/${post.userId}`)
       .then((res) => {
         console.log(res);
       })

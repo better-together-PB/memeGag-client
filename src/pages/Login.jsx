@@ -1,3 +1,4 @@
+import styles from "./Login.module.css";
 import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,7 +11,6 @@ function LoginPage(props) {
 
   const navigate = useNavigate();
 
-  /*  UPDATE - get authenticateUser from the context */
   const { storeToken, authenticateUser } = useContext(AuthContext);
 
   const handleEmail = (e) => setEmail(e.target.value);
@@ -23,14 +23,8 @@ function LoginPage(props) {
     axios
       .post(`${import.meta.env.VITE_API_URL}/auth/login`, requestBody)
       .then((response) => {
-        console.log("JWT token", response.data.authToken);
-
-        // Save the token in the localStorage.
         storeToken(response.data.authToken);
-
-        // Verify the token by sending a request
-        // to the server's JWT validation endpoint.
-        authenticateUser(); // <== ADD
+        authenticateUser();
         navigate("/");
       })
       .catch((error) => {
@@ -40,28 +34,36 @@ function LoginPage(props) {
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <>
+      <h2 className={styles.title}>Login</h2>
+      <div className={styles.container}>
+        <form onSubmit={handleLoginSubmit}>
+          <h3 className={styles.label}>Email:</h3>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleEmail}
+          />
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+          <h3 className={styles.label}>Password:</h3>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+          />
 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+          <button type="submit" className={styles.buttonSubmit}>
+            Login
+          </button>
+        </form>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Don&apos;t have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
-    </div>
+        <p>Don&apos;t have an account yet?</p>
+        <Link to={"/signup"}> Sign Up</Link>
+      </div>
+    </>
   );
 }
 

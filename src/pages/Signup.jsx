@@ -1,3 +1,4 @@
+import styles from "./Signup.module.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -32,32 +33,46 @@ function Signup(props) {
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Sign Up</h2>
+        <form onSubmit={handleSignupSubmit}>
+          <input
+            placeholder="Enter Email"
+            id="email"
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleEmail}
+          />
+          <input
+            placeholder="Enter Password"
+            id="password"
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+          />
+          <input
+            placeholder="Enter Username"
+            id="name"
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleName}
+          />
 
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+          <button type="submit" className={styles.buttonSubmit}>
+            Sign Up
+          </button>
+        </form>
 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-        <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} />
-
-        <button type="submit">Sign Up</button>
-      </form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
-    </div>
+        <p>Already have account?</p>
+        <Link to={"/login"}> Login</Link>
+      </div>
+    </>
   );
 }
 

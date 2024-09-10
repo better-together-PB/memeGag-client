@@ -1,3 +1,4 @@
+import styles from "./CreatePost.module.css";
 import axios from "axios";
 
 import { AuthContext } from "../context/auth.context";
@@ -45,22 +46,28 @@ function CreatePost() {
   };
   return (
     <div>
-      <h2>Share a meme</h2>
+      <h2 className={styles.title}>Create Post</h2>
 
-      <form onSubmit={handleSubmitPost}>
-        <label>Title:</label>
-        <input type="text" name="text" value={title} onChange={handleTitle} />
+      <div className={styles.container}>
+        <div className={styles.tagsContainer}>
+          <h3 className={styles.label}>Choose Tag:</h3>
+          <input type="text" name="tags" value={tags} onChange={handleTags} />
+        </div>
 
-        <label>Image:</label>
-        <input type="url" name="image" value={image} onChange={handleImage} />
+        <form onSubmit={handleSubmitPost}>
+          <h3 className={styles.label}>Title:</h3>
+          <input type="text" name="text" value={title} onChange={handleTitle} />
 
-        <label>Tags:</label>
-        <input type="text" name="tags" value={tags} onChange={handleTags} />
+          <h3 className={styles.label}>Image:</h3>
+          <input type="url" name="image" value={image} onChange={handleImage} />
 
-        <button type="submit">Create Post</button>
-      </form>
+          <button type="submit" className={styles.buttonSubmit}>
+            Post
+          </button>
+        </form>
 
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </div>
     </div>
   );
 }
