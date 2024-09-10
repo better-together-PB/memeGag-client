@@ -4,6 +4,12 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import MemeList from "../components/MemeList";
 
+const noMemes = {
+  likes: "No liked posts",
+  comments: "No commented posts",
+  posts: "No posts",
+};
+
 function User() {
   const [username, setUsername] = useState("");
   const [userImage, setUserImage] = useState("");
@@ -81,11 +87,15 @@ function User() {
         userId={userId}
         content={content}
       />
-      <MemeList
-        posts={posts}
-        onDeletePos={handleDeletePost}
-        onLikeBtnClick={handleLikeBtnClick}
-      />
+      {posts.length !== 0 ? (
+        <MemeList
+          posts={posts}
+          onDeletePos={handleDeletePost}
+          onLikeBtnClick={handleLikeBtnClick}
+        />
+      ) : (
+        <h3>{noMemes[content]}</h3>
+      )}
     </div>
   );
 }

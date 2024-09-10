@@ -3,7 +3,6 @@ import styles from "./Meme.module.css";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const tags = {
   humor:
@@ -109,9 +108,17 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
   const [newTitle, setNewTitle] = useState(post.title);
   const [isEditing, setIsEditing] = useState(false);
   const textareaRef = useRef();
-  const navigate = useNavigate();
 
-  console.log(post);
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/api/user/profile/${post.userId}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     if (isEditing) {

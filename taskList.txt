@@ -1,13 +1,15 @@
 for the backend create central error handling
 usernames should be unique
 
-when the user has no liked posts we should desplay a message 
 
 GIVE MAX LENGHT FOR THE TITLE
 Style the Signup, Login and CreatePost pages
 Make changes on the header and make it fixed/sticky
 Make a sidebar with all catecories, top comments and likes and home
 Make the wabsite responsive
+
+
+add the user profile to the mame(a link that leads to his profile)
 
 Implement comments for the posts
   -component for creating comments 
@@ -17,6 +19,8 @@ Implement comments for the posts
 Implement linking and disliking comments
 Implement deleting comments
 
+
+maybe add a loading state
 
 
 
