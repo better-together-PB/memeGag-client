@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import MemeList from "../components/MemeList";
 import axios from "axios";
 
-const API_URL = "http://localhost:5005";
-
 function MainFeed() {
   const [posts, setPosts] = useState([]);
 
@@ -11,7 +9,7 @@ function MainFeed() {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .get(`${API_URL}/api`, {
+      .get(`${import.meta.env.VITE_API_URL}/api`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((res) => {

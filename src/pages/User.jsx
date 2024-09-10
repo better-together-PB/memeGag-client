@@ -4,8 +4,6 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import MemeList from "../components/MemeList";
 
-const API_URL = "http://localhost:5005";
-
 function User() {
   const [username, setUsername] = useState("");
   const [userImage, setUserImage] = useState("");
@@ -26,7 +24,7 @@ function User() {
     }
 
     axios
-      .get(`${API_URL}/api/user/${userId}/${content}`, {
+      .get(`${import.meta.env.VITE_API_URL}/api/user/${userId}/${content}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((res) => {

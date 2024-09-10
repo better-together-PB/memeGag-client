@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Meme from "../components/Meme";
 
-const API_URL = "http://localhost:5005";
-
 function MemePage() {
   const [post, setPost] = useState();
   const { postId } = useParams();
@@ -13,7 +11,7 @@ function MemePage() {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .get(`${API_URL}/api/post/${postId}`, {
+      .get(`${import.meta.env.VITE_API_URL}/api/post/${postId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((res) => {

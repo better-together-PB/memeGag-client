@@ -5,8 +5,6 @@ import { AuthContext } from "../context/auth.context";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
-
 function CreatePost() {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -33,7 +31,7 @@ function CreatePost() {
     const requestBody = { title, image, tags, userId };
 
     axios
-      .post(`${API_URL}/api/post/create`, requestBody, {
+      .post(`${import.meta.env.VITE_API_URL}/api/post/create`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {

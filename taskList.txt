@@ -1,4 +1,7 @@
 for the backend create central error handling
+usernames should be unique
+
+when the user has no liked posts we should desplay a message 
 
 GIVE MAX LENGHT FOR THE TITLE
 Style the Signup, Login and CreatePost pages

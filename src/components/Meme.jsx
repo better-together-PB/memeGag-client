@@ -103,8 +103,6 @@ function calcDays(dateString) {
   return daysDifference;
 }
 
-const API_URL = "http://localhost:5005";
-
 function Meme({ post, onDeletePost, onLikeBtnClick }) {
   const { user } = useContext(AuthContext);
   const [title, setTitle] = useState(post.title);
@@ -136,7 +134,7 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
 
     if (deletePost) {
       axios
-        .delete(`${API_URL}/api/post/${id}`, {
+        .delete(`${import.meta.env.VITE_API_URL}/api/post/${id}`, {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then(() => {
@@ -153,7 +151,7 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
     const storedToken = localStorage.getItem("authToken");
     axios
       .post(
-        `${API_URL}/api/post/${id}/like`,
+        `${import.meta.env.VITE_API_URL}/api/post/${id}/like`,
         {},
         {
           headers: { Authorization: `Bearer ${storedToken}` },
@@ -173,7 +171,7 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
     if (isEditing) {
       axios
         .patch(
-          `${API_URL}/api/post/${post._id}`,
+          `${import.meta.env.VITE_API_URL}/api/post/${post._id}`,
           { title: newTitle },
           {
             headers: { Authorization: `Bearer ${storedToken}` },
