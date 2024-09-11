@@ -3,6 +3,7 @@ import styles from "./Meme.module.css";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const tags = {
   humor:
@@ -107,13 +108,14 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
   const [title, setTitle] = useState(post.title);
   const [newTitle, setNewTitle] = useState(post.title);
   const [isEditing, setIsEditing] = useState(false);
+  const [creator, setCreator] = useState(null);
   const textareaRef = useRef();
 
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/api/user/details/${post.userId}`)
       .then((res) => {
-        console.log(res);
+        setCreator(res.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -225,7 +227,7 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
           {daysAgo}
           {daysAgo === "new" || "d"}
         </span>
-        {postCreatedByUser && (
+        {postCreatedByUser ? (
           <div className={styles.ownerIconContainer}>
             <button
               className={`${styles.ownerIcon} ${styles.edit} ${
@@ -242,6 +244,10 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
               {DeleteIcon}
             </button>
           </div>
+        ) : (
+          <Link to={`/user/${creator?._id}`} className={styles.creator}>
+            {creator?.name}
+          </Link>
         )}
       </div>
       <h4 onClick={() => handleOpenPost(post._id)}>
