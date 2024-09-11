@@ -16,7 +16,7 @@ const tags = {
     "https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1683179392.1419_yMavUr_100x100.jpg",
   sports:
     "https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1683177922.4407_yhu7AJ_100x100.jpg",
-  wtf: "https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1683958069.2788_PA7eVy_100x100.jpg",
+  WTF: "https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1683958069.2788_PA7eVy_100x100.jpg",
 };
 
 const DeleteIcon = (
@@ -250,9 +250,11 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
           </Link>
         )}
       </div>
-      <h4 onClick={() => handleOpenPost(post._id)}>
-        {isEditing ? editTextArea : title}
-      </h4>
+      {isEditing ? (
+        editTextArea
+      ) : (
+        <h4 onClick={() => handleOpenPost(post._id)}>{title}</h4>
+      )}
       <div className={styles.imageContainer}>
         <img
           onClick={() => handleOpenPost(post._id)}

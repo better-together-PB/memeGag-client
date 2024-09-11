@@ -45,21 +45,42 @@ function CreatePost() {
       });
   };
   return (
-    <div>
-      <h2 className={styles.title}>Create Post</h2>
-
+    <>
       <div className={styles.container}>
-        <div className={styles.tagsContainer}>
-          <h3 className={styles.label}>Choose Tag:</h3>
-          <input type="text" name="tags" value={tags} onChange={handleTags} />
-        </div>
-
+        <h2 className={styles.title}>Create Post</h2>
         <form onSubmit={handleSubmitPost}>
-          <h3 className={styles.label}>Title:</h3>
-          <input type="text" name="text" value={title} onChange={handleTitle} />
+          <select
+            name="tags"
+            id="tags-select"
+            defaultValue={tags}
+            onChange={handleTags}
+          >
+            <option value="" disabled>
+              Choose Tags
+            </option>
+            <option value="animals">Animals</option>
+            <option value="WTF">WTF</option>
+            <option value="sports">Sports</option>
+            <option value="gaming">Gaming</option>
+            <option value="comic">Comic</option>
+            <option value="humor">Humor</option>
+          </select>
 
-          <h3 className={styles.label}>Image:</h3>
-          <input type="url" name="image" value={image} onChange={handleImage} />
+          <input
+            placeholder="Enter Title"
+            type="title"
+            name="title"
+            value={title}
+            onChange={handleTitle}
+          />
+
+          <input
+            placeholder="Enter Image Url"
+            type="url"
+            name="image"
+            value={image}
+            onChange={handleImage}
+          />
 
           <button type="submit" className={styles.buttonSubmit}>
             Post
@@ -68,7 +89,7 @@ function CreatePost() {
 
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
-    </div>
+    </>
   );
 }
 

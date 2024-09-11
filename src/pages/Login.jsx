@@ -35,19 +35,19 @@ function LoginPage(props) {
 
   return (
     <>
-      <h2 className={styles.title}>Login</h2>
       <div className={styles.container}>
+        <h2 className={styles.title}>Login</h2>
         <form onSubmit={handleLoginSubmit}>
-          <h3 className={styles.label}>Email:</h3>
           <input
+            placeholder="Enter Email"
             type="email"
             name="email"
             value={email}
             onChange={handleEmail}
           />
 
-          <h3 className={styles.label}>Password:</h3>
           <input
+            placeholder="Enter Password"
             type="password"
             name="password"
             value={password}

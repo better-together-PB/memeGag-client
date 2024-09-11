@@ -1,28 +1,19 @@
 for the backend create central error handling
-usernames should be unique
 
+GIVE MAX LENGHT FOR THE TITLE and make text area bigger
 
-GIVE MAX LENGHT FOR THE TITLE
-Style the Signup, Login and CreatePost pages
 Make changes on the header and make it fixed/sticky
-Make a sidebar with all catecories, top comments and likes and home
+
+Clicking a profile (no likes posts)
+Commenting on Posts (update post Comments)
+Deleting comments on posts (update post Comments)
+Comment when logged out Should display Sign Up page (can write comment and displays image)
+Like on post when logged out Should display Sign Up page
+Like on dashboard when logged out Should display Sign Up page
+
 Make the wabsite responsive
 
-
-add the user profile to the mame(a link that leads to his profile)
-
-Implement comments for the posts
-  -component for creating comments 
-  -component for fetching and displaying a list of comments
-  -component that will be the comments
-
-Implement linking and disliking comments
-Implement deleting comments
-
-
-maybe add a loading state
-
-
+Loading State 
 
 PAGES 
 

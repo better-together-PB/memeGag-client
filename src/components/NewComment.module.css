@@ -10,3 +10,42 @@
 
   background-color: #ddd;
 }
+
+.container {
+  display: flex;
+  gap: 15px
+}
+
+.container form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 15px
+}
+
+.container textarea {
+  flex-grow: 1;
+  resize: none;
+  height: 110px;
+  font-size: 18px;
+  padding: 5px;
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+
+.button {
+  align-self: flex-end;
+  display: block;
+  padding: 10px 20px;
+  font-size: 28px;
+  color: white;
+  background-color: #0077ff;
+  cursor: pointer;
+  margin-bottom: 40px;
+  border: none;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: #006be6;
+}

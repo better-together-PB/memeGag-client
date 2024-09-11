@@ -24,27 +24,25 @@ function MemePage() {
   }, []);
 
   function handleLikeBtnClick(id, liked) {
-    setPost((prevPosts) =>
-      prevPosts.map((post) => {
-        if (post._id === id) {
-          if (liked) {
-            return {
-              ...post,
-              likes: post.likes - 1,
-              isLikedByUser: !post.isLikedByUser,
-            };
-          } else {
-            return {
-              ...post,
-              likes: post.likes + 1,
-              isLikedByUser: !post.isLikedByUser,
-            };
-          }
+    setPost((post) => {
+      if (post._id === id) {
+        if (liked) {
+          return {
+            ...post,
+            likes: post.likes - 1,
+            isLikedByUser: !post.isLikedByUser,
+          };
         } else {
-          return post;
+          return {
+            ...post,
+            likes: post.likes + 1,
+            isLikedByUser: !post.isLikedByUser,
+          };
         }
-      })
-    );
+      } else {
+        return post;
+      }
+    });
   }
 
   function handleDeletePost(id) {

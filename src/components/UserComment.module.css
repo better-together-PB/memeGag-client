@@ -10,3 +10,103 @@
 
   background-color: #ddd;
 }
+
+.container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.container:hover {
+  background-color: #f3f3f3;
+}
+
+.pContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.pComment {
+  word-break: break-all;
+}
+
+.pUsername:link,
+.pUsername:visited {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+}
+
+.pUsername:active,
+.pUsername:hover {
+  text-decoration: underline;
+}
+
+.userContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.xbutton {
+  font-size: 15px;
+  background-color: inherit;
+  padding: 5px 10px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.xbutton:hover {
+  background-color: red;
+  color: white;
+  border: 1px solid red;
+}
+
+.like {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: inherit;
+  transition: all 0.3s;
+}
+
+.like:hover {
+  background-color: #f3f3f3;
+  color: #333;
+}
+
+.like span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #7d7d7d;
+  transition: all 0.3s;
+}
+
+.like:hover span {
+  color: #333;
+}
+
+.iconInteract {
+  width: 24px;
+  color: #7d7d7d;
+}
+
+.like:hover .iconInteract {
+  color: red;
+}
+
+.liked .iconInteract {
+  color: red;
+  fill: red;
+}
