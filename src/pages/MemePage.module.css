@@ -1,5 +1,5 @@
 .container {
-  width: 40%;
+  width: 45%;
 }
 
 @media (max-width: 1024px) {
@@ -12,6 +12,7 @@
     width: 70%;
   }
 }
+
 @media (max-width: 545px) {
   .container {
     width: 100%;

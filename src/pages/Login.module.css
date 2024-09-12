@@ -1,66 +1,90 @@
 .title {
-    font-size: 48px;
-    margin-bottom: 40px;
+  font-size: 48px;
+  margin-bottom: 40px;
 }
 
 .container {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .container form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 }
 
 .buttonSubmit {
-    width: 50%;
-    display: block;
-    padding: 10px 20px;
-    font-size: 28px;
-    color: white;
-    background-color: #0077ff;
-    cursor: pointer;
-    margin-bottom: 40px;
-    border: none;
-    border-radius: 10px;
+  width: 50%;
+  display: block;
+  padding: 10px 20px;
+  font-size: 28px;
+  color: white;
+  background-color: #0077ff;
+  cursor: pointer;
+  margin-bottom: 40px;
+  border: none;
+  border-radius: 10px;
 }
 
 .buttonSubmit:hover {
-    background-color: #006be6;
+  background-color: #006be6;
 }
 
 .container input {
-    width: 50%;
-    font-size: 28px;
-    padding: 10px 20px;
-    border: 1px solid #333;
-    border-radius: 10px;
-    font-family: inherit;
+  width: 50%;
+  font-size: 28px;
+  padding: 10px 20px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  font-family: inherit;
 }
 
 .container p {
-    font-size: 22px;
-    margin-bottom: 10px;
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
 .container a:link,
 .container a:visited {
-    font-size: 22px;
-    text-decoration: none;
-    color: #fff;
+  font-size: 22px;
+  text-decoration: none;
+  color: #fff;
 
-    background-color: #0077ff;
-    padding: 10px 20px;
-    border-radius: 10px;
+  background-color: #0077ff;
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .container a:active,
 .container a:hover {
-    background-color: #006be6;
+  background-color: #006be6;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 60%;
+  }
+  .container input,
+  select,
+  textarea,
+  .buttonSubmit {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    width: 70%;
+  }
+}
+
+@media (max-width: 545px) {
+  .container {
+    width: 100%;
+    padding: 0 20px;
+  }
 }

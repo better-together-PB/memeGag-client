@@ -7,8 +7,7 @@ import styles from "./Comments.module.css";
 
 import { AuthContext } from "../context/auth.context";
 
-function Comments() {
-  const [commentsList, setCommentsList] = useState([]);
+function Comments({ commentsList, onCommentListChange }) {
   const { postId } = useParams();
   const [comment, setComment] = useState("");
 
@@ -36,7 +35,7 @@ function Comments() {
         }
       )
       .then((res) => {
-        setCommentsList([res.data.data, ...commentsList]);
+        onCommentListChange([res.data.data, ...commentsList]);
         console.log(res);
         setComment("");
       })
@@ -53,7 +52,7 @@ function Comments() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((res) => {
-        setCommentsList(res.data.data);
+        onCommentListChange(res.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -71,7 +70,7 @@ function Comments() {
         }
       )
       .then((res) => {
-        setCommentsList((c) => c.filter((sc) => sc._id !== commentId));
+        onCommentListChange((c) => c.filter((sc) => sc._id !== commentId));
       })
       .catch((error) => {
         console.log(error);
@@ -88,7 +87,7 @@ function Comments() {
         }
       )
       .then((res) => {
-        setCommentsList((prevComments) => {
+        onCommentListChange((prevComments) => {
           return prevComments.map((comment) => {
             return comment._id === res.data.data._id ? res.data.data : comment;
           });

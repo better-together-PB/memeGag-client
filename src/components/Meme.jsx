@@ -103,7 +103,7 @@ function calcDays(dateString) {
   return daysDifference;
 }
 
-function Meme({ post, onDeletePost, onLikeBtnClick }) {
+function Meme({ post, onDeletePost, onLikeBtnClick, numOfComments }) {
   const { user } = useContext(AuthContext);
   const [title, setTitle] = useState(post.title);
   const [newTitle, setNewTitle] = useState(post.title);
@@ -219,6 +219,8 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
     </form>
   );
 
+  const commentsCount = numOfComments || post.comments;
+
   return (
     <div className={styles.meme}>
       <div className={styles.memeInfo}>
@@ -275,8 +277,8 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
         <div onClick={() => handleOpenPost(post._id)}>
           <button className={styles.comment}>
             {Comment}
-            <span>{post.comments}</span>
-            <span>{post.comments === 1 ? "Comment" : "Comments"}</span>
+            <span>{commentsCount}</span>
+            <span>{commentsCount === 1 ? "Comment" : "Comments"}</span>
           </button>
         </div>
       </div>

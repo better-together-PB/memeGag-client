@@ -1,5 +1,7 @@
 import styles from "./UserComment.module.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
+import { useContext } from "react";
 
 const Heart = (
   <svg
@@ -19,6 +21,9 @@ const Heart = (
 );
 
 function UserComment({ comment, onDeleteComment, onLikeComment }) {
+  const { user } = useContext(AuthContext);
+  console.log(user);
+  const isLikedByUser = comment.likes.includes(user?._id);
   return (
     <div className={styles.container}>
       <Link to={`/user/${comment.userId._id}`}>
@@ -33,18 +38,20 @@ function UserComment({ comment, onDeleteComment, onLikeComment }) {
           <Link className={styles.pUsername} to={`/user/${comment.userId._id}`}>
             {comment.userId.name}{" "}
           </Link>
-          <button
-            onClick={() => onDeleteComment(comment._id)}
-            className={styles.xbutton}
-          >
-            X
-          </button>
+          {user?._id === comment.userId._id && (
+            <button
+              onClick={() => onDeleteComment(comment._id)}
+              className={styles.xbutton}
+            >
+              X
+            </button>
+          )}
         </div>
 
         <p className={styles.pComment}>{comment.comment}</p>
         <button
           onClick={() => onLikeComment(comment._id)}
-          className={`${styles.like}`}
+          className={`${styles.like} ${isLikedByUser ? styles.liked : ""}`}
         >
           {Heart}
           <span>{comment.likes.length}</span>

@@ -57,50 +57,48 @@ function CreatePost() {
       });
   };
   return (
-    <>
-      <div className={styles.container}>
-        <h2 className={styles.title}>Create Post</h2>
-        <form onSubmit={handleSubmitPost}>
-          <textarea
-            ref={textAreaRef}
-            placeholder="Enter Title"
-            value={title}
-            onChange={handleTitle}
-            maxLength={185}
-          />
+    <div className={styles.container}>
+      <h2 className={styles.title}>Create Post</h2>
+      <form onSubmit={handleSubmitPost}>
+        <textarea
+          ref={textAreaRef}
+          placeholder="Enter Title"
+          value={title}
+          onChange={handleTitle}
+          maxLength={185}
+        />
 
-          <input
-            placeholder="Enter Image Url"
-            type="url"
-            name="image"
-            value={image}
-            onChange={handleImage}
-          />
-          <select
-            name="tags"
-            id="tags-select"
-            defaultValue={tags}
-            onChange={handleTags}
-          >
-            <option value="" disabled>
-              Choose Tags
-            </option>
-            <option value="animals">Animals</option>
-            <option value="WTF">WTF</option>
-            <option value="sports">Sports</option>
-            <option value="gaming">Gaming</option>
-            <option value="comic">Comic</option>
-            <option value="humor">Humor</option>
-          </select>
+        <input
+          placeholder="Enter Image Url"
+          type="url"
+          name="image"
+          value={image}
+          onChange={handleImage}
+        />
+        <select
+          name="tags"
+          id="tags-select"
+          defaultValue={tags}
+          onChange={handleTags}
+        >
+          <option value="" disabled>
+            Choose Tags
+          </option>
+          <option value="animals">Animals</option>
+          <option value="WTF">WTF</option>
+          <option value="sports">Sports</option>
+          <option value="gaming">Gaming</option>
+          <option value="comic">Comic</option>
+          <option value="humor">Humor</option>
+        </select>
 
-          <button type="submit" className={styles.buttonSubmit}>
-            Post
-          </button>
-        </form>
+        <button type="submit" className={styles.buttonSubmit}>
+          Post
+        </button>
+      </form>
 
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-      </div>
-    </>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+    </div>
   );
 }
 

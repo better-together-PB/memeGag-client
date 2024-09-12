@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Meme from "../components/Meme";
 import Comments from "../components/Comments";
+import styles from "./MemePage.module.css";
 
 function MemePage() {
   const [post, setPost] = useState();
   const { postId } = useParams();
   const navigate = useNavigate();
+  const [commentsList, setCommentsList] = useState([]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -51,16 +53,24 @@ function MemePage() {
     navigate("/");
   }
 
+  function handleCommentListChange(func) {
+    setCommentsList(func);
+  }
+
   return (
-    <div style={{ width: "45%" }}>
+    <div className={styles.container}>
       {post && (
         <Meme
           post={post}
+          numOfComments={commentsList.length}
           onDeletePost={handleDeletePost}
           onLikeBtnClick={handleLikeBtnClick}
         />
       )}
-      <Comments />
+      <Comments
+        commentsList={commentsList}
+        onCommentListChange={handleCommentListChange}
+      />
     </div>
   );
 }

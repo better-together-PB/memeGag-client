@@ -1,8 +1,10 @@
 import Navbar from "./Navbar";
 
+import styles from "./Header.module.css";
+
 function Header() {
   return (
-    <header style={{ position: "sticky", top: "0", backgroundColor: "#fff" }}>
+    <header className={styles.header}>
       <Navbar />
     </header>
   );

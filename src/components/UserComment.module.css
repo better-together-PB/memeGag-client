@@ -71,6 +71,7 @@
   display: flex;
   align-items: center;
   gap: 3px;
+  width: fit-content;
 
   border: none;
   cursor: pointer;

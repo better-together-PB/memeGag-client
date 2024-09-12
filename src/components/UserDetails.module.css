@@ -38,3 +38,25 @@
   border-bottom: 4px solid #333;
   color: inherit;
 }
+
+@media (max-width: 1024px) {
+  .menu {
+    width: 60%;
+  }
+}
+@media (max-width: 768px) {
+  .menu {
+    width: 70%;
+  }
+}
+
+@media (max-width: 545px) {
+  .menu {
+    width: 100%;
+    padding: 0 20px;
+  }
+  .menu a:link,
+  .menu a:visited {
+    padding: 5px 15px;
+  }
+}

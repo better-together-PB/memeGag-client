@@ -1,13 +1,6 @@
-for the backend create central error handling
-
-Commenting on Posts (update post Comments) update comment count
-Deleting comments on posts (update post Comments)
-
-Make the wabsite responsive
+loading component
 
 uploading gif
-
-Loading State 
 
 
 

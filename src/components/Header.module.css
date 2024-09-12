@@ -1,0 +1,11 @@
+.header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+}
+
+@media (max-width: 545px) {
+  .header {
+    position: static;
+  }
+}

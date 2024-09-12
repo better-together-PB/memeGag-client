@@ -4,7 +4,7 @@
 }
 
 .container {
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,4 +72,27 @@ textarea {
 .container a:active,
 .container a:hover {
   background-color: #006be6;
+}
+@media (max-width: 1024px) {
+  .container {
+    width: 60%;
+  }
+  .container input,
+  select,
+  textarea,
+  .buttonSubmit {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    width: 70%;
+  }
+}
+
+@media (max-width: 545px) {
+  .container {
+    width: 100%;
+    padding: 0 20px;
+  }
 }

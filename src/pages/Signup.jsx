@@ -109,7 +109,11 @@ function Signup(props) {
             <button type="button" onClick={() => handleImageCounter("prev")}>
               &lt;
             </button>
-            <img src={profileImgs[imageCounter]} alt="User " />
+            <img
+              className={styles.profileImage}
+              src={profileImgs[imageCounter]}
+              alt="User "
+            />
             <button type="button" onClick={() => handleImageCounter("next")}>
               &gt;
             </button>
