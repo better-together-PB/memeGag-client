@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import CommentList from "./CommentsList";
 import NewComment from "./NewComment";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./Comments.module.css";
 
@@ -10,6 +10,7 @@ import { AuthContext } from "../context/auth.context";
 function Comments({ commentsList, onCommentListChange }) {
   const { postId } = useParams();
   const [comment, setComment] = useState("");
+  const navigate = useNavigate();
 
   const { isLoggedIn } = useContext(AuthContext);
 
@@ -77,7 +78,12 @@ function Comments({ commentsList, onCommentListChange }) {
       });
   }
   function handleLikeComment(commentId) {
+    if (!isLoggedIn) {
+      navigate("/login");
+      return;
+    }
     const storedToken = localStorage.getItem("authToken");
+
     axios
       .post(
         `${import.meta.env.VITE_API_URL}/api/post/${postId}/${commentId}/like`,

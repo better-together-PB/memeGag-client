@@ -22,7 +22,6 @@ const Heart = (
 
 function UserComment({ comment, onDeleteComment, onLikeComment }) {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const isLikedByUser = comment.likes.includes(user?._id);
   return (
     <div className={styles.container}>

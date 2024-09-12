@@ -3,7 +3,7 @@ import styles from "./Meme.module.css";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const tags = {
   humor:
@@ -111,6 +111,7 @@ function Meme({ post, onDeletePost, onLikeBtnClick, numOfComments }) {
   const [creator, setCreator] = useState(null);
   const textareaRef = useRef();
   const navigate = useNavigate();
+  const { postId: paramsPostId } = useParams();
 
   useEffect(() => {
     axios
@@ -200,6 +201,7 @@ function Meme({ post, onDeletePost, onLikeBtnClick, numOfComments }) {
   }
 
   function handleOpenPost(postId) {
+    if (paramsPostId === postId) return;
     window.open(`/post/${postId}`, "_black", "noopener,noreferrer");
   }
 
