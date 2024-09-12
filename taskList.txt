@@ -1,19 +1,15 @@
 for the backend create central error handling
 
-GIVE MAX LENGHT FOR THE TITLE and make text area bigger
-
-Make changes on the header and make it fixed/sticky
-
-Clicking a profile (no likes posts)
-Commenting on Posts (update post Comments)
+Commenting on Posts (update post Comments) update comment count
 Deleting comments on posts (update post Comments)
-Comment when logged out Should display Sign Up page (can write comment and displays image)
-Like on post when logged out Should display Sign Up page
-Like on dashboard when logged out Should display Sign Up page
 
 Make the wabsite responsive
 
+uploading gif
+
 Loading State 
+
+
 
 PAGES 
 

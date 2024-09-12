@@ -1,8 +1,6 @@
 .profileImg {
-  padding: 5px;
   border-radius: 50%;
   width: 50px;
-  height: 50px;
 
   display: flex;
   justify-content: center;
@@ -13,14 +11,14 @@
 
 .container {
   display: flex;
-  gap: 15px
+  gap: 15px;
 }
 
 .container form {
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 15px
+  gap: 15px;
 }
 
 .container textarea {
@@ -31,6 +29,7 @@
   padding: 5px;
   border: 1px solid #333;
   border-radius: 10px;
+  width: 100%;
 }
 
 .button {

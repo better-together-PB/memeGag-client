@@ -10,7 +10,7 @@ function UserDetails({ username, userImage, userId, content }) {
       </div>
       <div className={styles.menu}>
         <NavLink
-          className={content ? "" : "active"}
+          className={content === "likes" ? "active" : ""}
           to={`/user/${userId}/likes`}
         >
           likes

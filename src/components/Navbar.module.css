@@ -21,7 +21,7 @@
 }
 
 .logo h1 {
-  font-size: 42px;
+  font-size: 32px;
   padding: 10px 20px;
 }
 
@@ -60,13 +60,19 @@
   background-color: #ddd;
 }
 
+.subNav .logoutBtn:link,
+.subNav .logoutBtn:visited {
+  background-color: #ef4444;
+}
+
 .subNav .profilePicture:hover,
 .subNav .profilePicture:active {
   background-color: #ccc;
 }
 
 .profilePicture img {
-  width: 40px;
+  width: 120%;
+  border-radius: 50%;
 }
 
 .nav * {

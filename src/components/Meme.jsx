@@ -3,7 +3,7 @@ import styles from "./Meme.module.css";
 import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const tags = {
   humor:
@@ -110,6 +110,7 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
   const [isEditing, setIsEditing] = useState(false);
   const [creator, setCreator] = useState(null);
   const textareaRef = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -266,7 +267,7 @@ function Meme({ post, onDeletePost, onLikeBtnClick }) {
       <div className={styles.interactions}>
         <button
           className={`${styles.like} ${post.isLikedByUser ? styles.liked : ""}`}
-          onClick={() => handleLikePost(post._id)}
+          onClick={() => (user ? handleLikePost(post._id) : navigate("/login"))}
         >
           {Heart}
           <span>{post.likes}</span>

@@ -19,7 +19,7 @@ function Navbar() {
               {user && <img src={user.image} alt="Profile picture" />}
             </Link>
             <Link to="/createPost">Post</Link>
-            <Link to="/" onClick={logOutUser}>
+            <Link to="/" onClick={logOutUser} className={styles.logoutBtn}>
               Logout
             </Link>
           </>

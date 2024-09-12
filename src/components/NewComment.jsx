@@ -6,7 +6,9 @@ function NewComment({ comment, onSubmit, onCommentChange }) {
   const { user } = useContext(AuthContext);
   return (
     <div className={styles.container} id="comment">
-      <img className={styles.profileImg} src={user?.image} alt={user?.name} />
+      <div>
+        <img className={styles.profileImg} src={user?.image} alt={user?.name} />
+      </div>
 
       <form onSubmit={(e) => onSubmit(e)}>
         <textarea

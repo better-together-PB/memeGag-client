@@ -18,16 +18,17 @@ function User() {
   let { userId, content } = useParams();
   const navigate = useNavigate();
 
+  if (content) {
+    if (!["likes", "posts", "comments"].includes(content)) {
+      content = "";
+      navigate(`/user/${userId}`);
+    }
+  } else {
+    content = "likes";
+  }
+
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
-    if (content) {
-      if (!["likes", "posts", "comments"].includes(content)) {
-        content = "";
-        navigate(`/user/${userId}`);
-      }
-    } else {
-      content = "";
-    }
 
     axios
       .get(`${import.meta.env.VITE_API_URL}/api/user/${userId}/${content}`, {
@@ -90,7 +91,7 @@ function User() {
       {posts.length !== 0 ? (
         <MemeList
           posts={posts}
-          onDeletePos={handleDeletePost}
+          onDeletePost={handleDeletePost}
           onLikeBtnClick={handleLikeBtnClick}
         />
       ) : (

@@ -3,10 +3,33 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const profileImgs = [
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_216_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_132_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_21_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_208_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_111_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_205_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_138_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_17_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_101_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_186_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_125_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_59_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_199_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_36_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_136_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_35_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_137_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_189_100_v0.jpg",
+  "https://accounts-cdn.9gag.com/media/default-avatar/1_127_100_v0.jpg",
+];
+
 function Signup(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [imageCounter, setImageCounter] = useState(0);
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
@@ -18,7 +41,12 @@ function Signup(props) {
   const handleSignupSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = { email, password, name };
+    const requestBody = {
+      email,
+      password,
+      name,
+      profileImage: profileImgs[imageCounter],
+    };
 
     axios
       .post(`${import.meta.env.VITE_API_URL}/auth/signup`, requestBody)
@@ -31,6 +59,22 @@ function Signup(props) {
         setErrorMessage(errorDescription);
       });
   };
+
+  function handleImageCounter(direction) {
+    if (direction === "next") {
+      if (imageCounter === profileImgs.length - 1) {
+        setImageCounter(0);
+      } else {
+        setImageCounter((c) => c + 1);
+      }
+    } else if (direction === "prev") {
+      if (imageCounter === 0) {
+        setImageCounter(profileImgs.length - 1);
+      } else {
+        setImageCounter((c) => c - 1);
+      }
+    }
+  }
 
   return (
     <>
@@ -61,6 +105,15 @@ function Signup(props) {
             value={name}
             onChange={handleName}
           />
+          <div className={styles.profileImgContainer}>
+            <button type="button" onClick={() => handleImageCounter("prev")}>
+              &lt;
+            </button>
+            <img src={profileImgs[imageCounter]} alt="User " />
+            <button type="button" onClick={() => handleImageCounter("next")}>
+              &gt;
+            </button>
+          </div>
 
           <button type="submit" className={styles.buttonSubmit}>
             Sign Up

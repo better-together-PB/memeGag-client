@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Meme from "../components/Meme";
 import Comments from "../components/Comments";
 
 function MemePage() {
   const [post, setPost] = useState();
   const { postId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
@@ -47,6 +48,7 @@ function MemePage() {
 
   function handleDeletePost(id) {
     setPost((prevPosts) => prevPosts.filter((post) => post._id !== id));
+    navigate("/");
   }
 
   return (

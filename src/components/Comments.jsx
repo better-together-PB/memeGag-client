@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CommentList from "./CommentsList";
 import NewComment from "./NewComment";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import styles from "./Comments.module.css";
+
+import { AuthContext } from "../context/auth.context";
 
 function Comments() {
   const [commentsList, setCommentsList] = useState([]);
   const { postId } = useParams();
-
   const [comment, setComment] = useState("");
+
+  const { isLoggedIn } = useContext(AuthContext);
 
   function handleCommentChange(value) {
     setComment(value);
@@ -40,6 +44,7 @@ function Comments() {
         console.log(error);
       });
   }
+
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
 
@@ -95,12 +100,21 @@ function Comments() {
   }
 
   return (
-    <div>
-      <NewComment
-        comment={comment}
-        onSubmit={handleSubmit}
-        onCommentChange={handleCommentChange}
-      />
+    <div className={styles.container}>
+      {isLoggedIn ? (
+        <NewComment
+          comment={comment}
+          onSubmit={handleSubmit}
+          onCommentChange={handleCommentChange}
+        />
+      ) : (
+        <p className={styles.pLogin}>
+          <Link to="/login" className={styles.link}>
+            Login
+          </Link>{" "}
+          to write a comment
+        </p>
+      )}
       <CommentList
         commentsList={commentsList}
         onDeleteComment={handleDeleteComment}

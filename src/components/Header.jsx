@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 
 function Header() {
   return (
-    <header>
+    <header style={{ position: "sticky", top: "0", backgroundColor: "#fff" }}>
       <Navbar />
     </header>
   );

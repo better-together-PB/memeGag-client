@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { AuthContext } from "../context/auth.context";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
@@ -11,8 +11,20 @@ function CreatePost() {
   const [image, setImage] = useState("");
   const [tags, setTags] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const textAreaRef = useRef();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const textarea = textAreaRef.current;
+
+    textarea.addEventListener("input", autoResize);
+
+    function autoResize() {
+      this.style.height = "auto"; // Reset height to auto to shrink if text is deleted
+      this.style.height = this.scrollHeight + "px"; // Set height to scrollHeight
+    }
+  }, []);
 
   const { user, isLoading } = useContext(AuthContext);
   if (isLoading) {
@@ -49,6 +61,21 @@ function CreatePost() {
       <div className={styles.container}>
         <h2 className={styles.title}>Create Post</h2>
         <form onSubmit={handleSubmitPost}>
+          <textarea
+            ref={textAreaRef}
+            placeholder="Enter Title"
+            value={title}
+            onChange={handleTitle}
+            maxLength={185}
+          />
+
+          <input
+            placeholder="Enter Image Url"
+            type="url"
+            name="image"
+            value={image}
+            onChange={handleImage}
+          />
           <select
             name="tags"
             id="tags-select"
@@ -65,22 +92,6 @@ function CreatePost() {
             <option value="comic">Comic</option>
             <option value="humor">Humor</option>
           </select>
-
-          <input
-            placeholder="Enter Title"
-            type="title"
-            name="title"
-            value={title}
-            onChange={handleTitle}
-          />
-
-          <input
-            placeholder="Enter Image Url"
-            type="url"
-            name="image"
-            value={image}
-            onChange={handleImage}
-          />
 
           <button type="submit" className={styles.buttonSubmit}>
             Post
