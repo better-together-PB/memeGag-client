@@ -20,6 +20,12 @@
   color: #555;
 }
 
+.logoImg {
+  width: 150px;
+  display: block;
+  border-radius: 10px;
+}
+
 .logo h1 {
   font-size: 32px;
   padding: 10px 20px;

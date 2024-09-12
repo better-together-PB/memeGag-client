@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
+import logo from "../../public/logo.png";
 import styles from "./Navbar.module.css";
 
 function Navbar() {
@@ -10,7 +11,7 @@ function Navbar() {
   return (
     <nav className={styles.nav}>
       <Link to="/" className={styles.logo}>
-        <h1>memeGAG</h1>
+        <img className={styles.logoImg} src={logo} alt="logo" />
       </Link>
       <div className={styles.subNav}>
         {isLoggedIn && (
