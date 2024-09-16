@@ -1,8 +1,16 @@
-# React + Vite
+# memeGAG Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This repository contains the frontend code for the memeGAG application. It provides a user interface for interacting with the memeGAG API, allowing users to create posts, comment, like content, and manage their profiles.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **User Authentication**: Sign up, log in, and verify users.
+- **Post Management**: Create, view, update, and like posts.
+- **Comment Management**: Add, like, and delete comments.
+- **Profile Management**: View and update user profiles.
+
+## Demo
+
+https://memegag.netlify.app/
