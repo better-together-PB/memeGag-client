@@ -11,6 +11,11 @@ This repository contains the frontend code for the memeGAG application. It provi
 - **Comment Management**: Add, like, and delete comments.
 - **Profile Management**: View and update user profiles.
 
+## Link to backend repository
+
+https://github.com/better-together-PB/memeGag-server
+
+
 ## Demo
 
 https://memegag.netlify.app/
